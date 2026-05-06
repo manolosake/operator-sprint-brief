@@ -11,5 +11,9 @@
     "Markdown parser intentionally supports simple heading-based notes only.",
     "Remote publication is not configured in this phase."
   ],
+  "actions": [
+    "Confirm which operator receives the HTML brief first.",
+    "Capture feedback on whether the evidence and risk framing is sufficient."
+  ],
   "nextMilestone": "Add optional theme presets and richer input validation after local milestone acceptance."
 }

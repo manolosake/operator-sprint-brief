@@ -8,6 +8,7 @@ test('buildBriefModel normalizes core fields', () => {
     status: 'Ready',
     evidence: 'Demo generated\nTests pass',
     risks: ['Parser is simple'],
+    actions: ['Confirm dry run', 'Notify operators'],
     next_milestone: 'Review'
   });
 
@@ -15,6 +16,7 @@ test('buildBriefModel normalizes core fields', () => {
   assert.equal(model.status, 'Ready');
   assert.deepEqual(model.evidence, ['Demo generated', 'Tests pass']);
   assert.deepEqual(model.risks, ['Parser is simple']);
+  assert.deepEqual(model.actions, ['Confirm dry run', 'Notify operators']);
   assert.equal(model.nextMilestone, 'Review');
   assert.match(model.meta.generatedAt, /^\d{4}-\d{2}-\d{2}T/);
 });
@@ -25,6 +27,7 @@ test('buildBriefModel supplies clear defaults', () => {
   assert.equal(model.title, 'Operator Sprint Brief');
   assert.deepEqual(model.evidence, ['No evidence supplied.']);
   assert.deepEqual(model.risks, ['No risks supplied.']);
+  assert.deepEqual(model.actions, ['No actions supplied.']);
 });
 
 test('buildBriefModel normalizes provided generated timestamp', () => {

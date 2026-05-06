@@ -27,6 +27,10 @@ On track.
 ## Risks
 - Scope creep.
 
+## Next Actions
+- Confirm rollout checklist.
+- Assign review owner.
+
 ## Next Milestone
 Ship local demo.
 `, '/tmp/demo.md');
@@ -36,5 +40,6 @@ Ship local demo.
   assert.equal(parsed.generatedAt, '2026-05-06 05:28:15 UTC');
   assert.deepEqual(parsed.evidence, ['Parser works.', 'Renderer works.']);
   assert.deepEqual(parsed.risks, ['Scope creep.']);
+  assert.deepEqual(parsed.actions, ['Confirm rollout checklist.', 'Assign review owner.']);
   assert.equal(parsed.nextMilestone, 'Ship local demo.');
 });

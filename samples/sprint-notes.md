@@ -15,5 +15,9 @@ Markdown notes are being converted into a polished local operator brief.
 - Notes outside the expected headings are ignored.
 - Complex markdown formatting is treated as plain text.
 
+## Action Items
+- Confirm the first operator review recipient.
+- Collect feedback on the new actions section in the brief.
+
 ## Next Milestone
 Capture operator feedback and add only the highest-value formatting affordances.

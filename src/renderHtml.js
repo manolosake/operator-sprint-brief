@@ -2,6 +2,7 @@ function renderHtml(model) {
   const title = escapeHtml(model.title);
   const evidenceItems = model.evidence.map(renderListItem).join('');
   const riskItems = model.risks.map(renderListItem).join('');
+  const actionItems = model.actions.map(renderListItem).join('');
 
   return `<!doctype html>
 <html lang="en">
@@ -111,6 +112,9 @@ function renderHtml(model) {
     .risks {
       border-left: 6px solid var(--warning);
     }
+    .actions {
+      border-left: 6px solid var(--accent-strong);
+    }
     .milestone {
       min-height: 100%;
       display: flex;
@@ -157,6 +161,10 @@ function renderHtml(model) {
         <section class="risks" aria-labelledby="risks-heading">
           <h2 id="risks-heading">Risks</h2>
           <ul>${riskItems}</ul>
+        </section>
+        <section class="actions" aria-labelledby="actions-heading">
+          <h2 id="actions-heading">Actions</h2>
+          <ul>${actionItems}</ul>
         </section>
       </div>
       <section class="milestone" aria-labelledby="milestone-heading">

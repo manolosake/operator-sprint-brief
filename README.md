@@ -1,6 +1,6 @@
 # Operator Sprint Brief
 
-Operator Sprint Brief is a local-first Node.js CLI that turns a sprint/order JSON file or simple markdown notes into a polished, self-contained HTML operator brief. The output is intended for quick visual review: status, evidence, risks, and the next milestone are all visible in one file that opens without a server.
+Operator Sprint Brief is a local-first Node.js CLI that turns a sprint/order JSON file or simple markdown notes into a polished, self-contained HTML operator brief. The output is intended for quick visual review: status, evidence, risks, actions, and the next milestone are all visible in one file that opens without a server.
 
 ## Install
 
@@ -47,6 +47,7 @@ JSON input supports fields like:
   "status": "Ready for review",
   "evidence": ["Tests pass", "Demo generated"],
   "risks": ["Markdown parsing is intentionally simple"],
+  "actions": ["Confirm rollout owner", "Share brief with operators"],
   "nextMilestone": "Collect operator feedback"
 }
 ```
@@ -68,6 +69,10 @@ Ready for review.
 
 ## Risks
 - Markdown parsing is intentionally simple.
+
+## Actions
+- Confirm rollout owner.
+- Share brief with operators.
 
 ## Next Milestone
 Collect operator feedback.

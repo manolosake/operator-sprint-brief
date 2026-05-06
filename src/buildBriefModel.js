@@ -4,6 +4,7 @@ function buildBriefModel(input) {
   const status = asText(input.status) || 'Status not supplied.';
   const evidence = asList(input.evidence);
   const risks = asList(input.risks);
+  const actions = asList(input.actions);
   const nextMilestone = asText(input.nextMilestone || input.next_milestone || input.milestone) || 'Next milestone not supplied.';
 
   return {
@@ -11,6 +12,7 @@ function buildBriefModel(input) {
     status,
     evidence: evidence.length ? evidence : ['No evidence supplied.'],
     risks: risks.length ? risks : ['No risks supplied.'],
+    actions: actions.length ? actions : ['No actions supplied.'],
     nextMilestone,
     meta: {
       generatedAt,
