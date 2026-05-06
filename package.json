@@ -1,0 +1,23 @@
+{
+  "name": "operator-sprint-brief",
+  "version": "0.1.0",
+  "description": "Local-first Node.js CLI for turning sprint/order inputs into polished single-file HTML operator briefs.",
+  "main": "src/cli.js",
+  "bin": {
+    "operator-sprint-brief": "src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "demo:json": "node src/cli.js samples/sprint-order.json demo/operator-brief.html",
+    "demo:md": "node src/cli.js samples/sprint-notes.md demo/operator-brief-from-md.html",
+    "demo": "npm run demo:json && npm run demo:md"
+  },
+  "keywords": [
+    "cli",
+    "sprint",
+    "brief",
+    "operator"
+  ],
+  "author": "",
+  "license": "MIT"
+}
