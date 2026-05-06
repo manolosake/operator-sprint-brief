@@ -10,7 +10,8 @@
     "test": "node --test",
     "demo:json": "node src/cli.js samples/sprint-order.json demo/operator-brief.html",
     "demo:md": "node src/cli.js samples/sprint-notes.md demo/operator-brief-from-md.html",
-    "demo": "npm run demo:json && npm run demo:md"
+    "demo:preview": "node src/cli.js samples/sprint-order.json .codexbot_preview/preview.html",
+    "demo": "npm run demo:json && npm run demo:md && npm run demo:preview"
   },
   "keywords": [
     "cli",
