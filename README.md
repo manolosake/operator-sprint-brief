@@ -36,6 +36,12 @@ Run both demo commands:
 npm run demo
 ```
 
+Validate an input without writing HTML:
+
+```bash
+node src/cli.js --check samples/sprint-order.json
+```
+
 ## Test
 
 ```bash
@@ -87,6 +93,7 @@ Collect operator feedback.
 `generatedAt` is optional. When provided in JSON, or under a `Generated At` markdown heading, parseable timestamps are normalized and reused so demo regeneration is reproducible. When omitted, the CLI uses the current time for normal ad hoc briefs.
 
 The CLI accepts `-` for stdin input and stdout output. JSON piped through stdin is auto-detected from the leading `{`; all other piped content is treated as markdown.
+Use `--check` to validate and summarize an input before generating HTML.
 
 ## Demo Artifacts
 

@@ -10,16 +10,24 @@ function main(argv = process.argv.slice(2), io = {}) {
   const input = io.input || process.stdin;
   const output = io.output || process.stdout;
   const error = io.error || process.stderr;
-  const [inputPath, outputPath] = argv;
+  const isCheckMode = argv[0] === '--check';
+  const [inputPath, outputPath] = isCheckMode ? [argv[1], null] : argv;
 
-  if (!inputPath || !outputPath) {
+  if (!inputPath || (!isCheckMode && !outputPath)) {
     error.write('Usage: node src/cli.js <input.json|input.md|-> <output.html|->\n');
+    error.write('   or: node src/cli.js --check <input.json|input.md|->\n');
     return 1;
   }
 
   try {
     const parsed = inputPath === '-' ? parseInlineInput(readAll(input)) : parseInput(inputPath);
     const model = buildBriefModel(parsed);
+
+    if (isCheckMode) {
+      output.write(`${summarizeModel(model)}\n`);
+      return 0;
+    }
+
     const html = renderHtml(model);
 
     if (outputPath === '-') {
@@ -79,10 +87,23 @@ function readAll(stream) {
   throw new Error('Could not read input stream.');
 }
 
+function summarizeModel(model) {
+  return [
+    'Valid brief input.',
+    `title="${model.title}"`,
+    `source=${model.meta.sourceType}`,
+    `evidence=${model.evidence.length}`,
+    `risks=${model.risks.length}`,
+    `actions=${model.actions.length}`,
+    `nextMilestone="${model.nextMilestone}"`
+  ].join(' ');
+}
+
 if (require.main === module) {
   process.exitCode = main();
 }
 
 module.exports = {
-  main
+  main,
+  summarizeModel
 };

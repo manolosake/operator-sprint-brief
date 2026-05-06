@@ -34,3 +34,23 @@ test('cli returns a clean error for empty stdin input', () => {
   assert.equal(result.stdout, '');
   assert.match(result.stderr, /Input was empty\./);
 });
+
+test('cli check mode validates stdin input without generating html', () => {
+  const result = spawnSync(process.execPath, [cliPath, '--check', '-'], {
+    encoding: 'utf8',
+    input: JSON.stringify({
+      title: 'Check Brief',
+      status: 'Ready',
+      evidence: ['proof'],
+      risks: ['known gap'],
+      actions: ['review'],
+      nextMilestone: 'Ship'
+    })
+  });
+
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /Valid brief input\./);
+  assert.match(result.stdout, /title="Check Brief"/);
+  assert.match(result.stdout, /evidence=1/);
+  assert.equal(result.stderr, '');
+});
