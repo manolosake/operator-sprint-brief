@@ -26,3 +26,11 @@ test('buildBriefModel supplies clear defaults', () => {
   assert.deepEqual(model.evidence, ['No evidence supplied.']);
   assert.deepEqual(model.risks, ['No risks supplied.']);
 });
+
+test('buildBriefModel normalizes provided generated timestamp', () => {
+  const model = buildBriefModel({
+    generatedAt: '2026-05-06 05:28:15 UTC'
+  });
+
+  assert.equal(model.meta.generatedAt, '2026-05-06T05:28:15.000Z');
+});

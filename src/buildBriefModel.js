@@ -1,5 +1,5 @@
 function buildBriefModel(input) {
-  const generatedAt = new Date().toISOString();
+  const generatedAt = normalizeGeneratedAt(input.generatedAt || input.generated_at);
   const title = asText(input.title) || 'Operator Sprint Brief';
   const status = asText(input.status) || 'Status not supplied.';
   const evidence = asList(input.evidence);
@@ -60,8 +60,22 @@ function labelize(key) {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
+function normalizeGeneratedAt(value) {
+  const provided = asText(value);
+  if (!provided) {
+    return new Date().toISOString();
+  }
+
+  const date = new Date(provided);
+  if (Number.isNaN(date.getTime())) {
+    return provided;
+  }
+  return date.toISOString();
+}
+
 module.exports = {
   buildBriefModel,
   asList,
-  asText
+  asText,
+  normalizeGeneratedAt
 };

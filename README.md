@@ -43,6 +43,7 @@ JSON input supports fields like:
 ```json
 {
   "title": "Operator Sprint Brief",
+  "generatedAt": "2026-05-06T05:28:15.000Z",
   "status": "Ready for review",
   "evidence": ["Tests pass", "Demo generated"],
   "risks": ["Markdown parsing is intentionally simple"],
@@ -58,6 +59,9 @@ Markdown input supports simple headings:
 ## Status
 Ready for review.
 
+## Generated At
+2026-05-06T05:28:15.000Z
+
 ## Evidence
 - Tests pass.
 - Demo generated.
@@ -68,6 +72,8 @@ Ready for review.
 ## Next Milestone
 Collect operator feedback.
 ```
+
+`generatedAt` is optional. When provided in JSON, or under a `Generated At` markdown heading, parseable timestamps are normalized and reused so demo regeneration is reproducible. When omitted, the CLI uses the current time for normal ad hoc briefs.
 
 ## Demo Artifacts
 

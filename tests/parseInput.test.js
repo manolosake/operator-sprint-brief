@@ -21,6 +21,9 @@ On track.
 - Parser works.
 - Renderer works.
 
+## Generated At
+2026-05-06 05:28:15 UTC
+
 ## Risks
 - Scope creep.
 
@@ -30,6 +33,7 @@ Ship local demo.
 
   assert.equal(parsed.title, 'Demo');
   assert.equal(parsed.status, 'On track.');
+  assert.equal(parsed.generatedAt, '2026-05-06 05:28:15 UTC');
   assert.deepEqual(parsed.evidence, ['Parser works.', 'Renderer works.']);
   assert.deepEqual(parsed.risks, ['Scope creep.']);
   assert.equal(parsed.nextMilestone, 'Ship local demo.');

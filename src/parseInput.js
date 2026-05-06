@@ -6,6 +6,8 @@ const MARKDOWN_SECTIONS = {
   evidence: 'evidence',
   risks: 'risks',
   'risk': 'risks',
+  'generated at': 'generatedAt',
+  generatedat: 'generatedAt',
   'next milestone': 'nextMilestone',
   nextmilestone: 'nextMilestone',
   milestone: 'nextMilestone'
@@ -58,6 +60,7 @@ function parseMarkdown(raw, sourcePath = 'input.md') {
     status: '',
     evidence: [],
     risks: [],
+    generatedAt: '',
     nextMilestone: '',
     sourceType: 'markdown',
     sourcePath
