@@ -24,6 +24,12 @@ Generate a brief from markdown notes:
 node src/cli.js samples/sprint-notes.md demo/operator-brief-from-md.html
 ```
 
+Generate a brief in a shell pipeline:
+
+```bash
+cat samples/sprint-order.json | node src/cli.js - - > demo/operator-brief-piped.html
+```
+
 Run both demo commands:
 
 ```bash
@@ -79,6 +85,8 @@ Collect operator feedback.
 ```
 
 `generatedAt` is optional. When provided in JSON, or under a `Generated At` markdown heading, parseable timestamps are normalized and reused so demo regeneration is reproducible. When omitted, the CLI uses the current time for normal ad hoc briefs.
+
+The CLI accepts `-` for stdin input and stdout output. JSON piped through stdin is auto-detected from the leading `{`; all other piped content is treated as markdown.
 
 ## Demo Artifacts
 
