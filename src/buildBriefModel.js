@@ -1,6 +1,9 @@
-function buildBriefModel(input) {
+const THEME_SLUGS = ['default', 'slate', 'warm', 'high-contrast'];
+
+function buildBriefModel(input, options = {}) {
   const generatedAt = normalizeGeneratedAt(input.generatedAt || input.generated_at);
   const title = asText(input.title) || 'Operator Sprint Brief';
+  const theme = normalizeTheme(options.theme || input.theme || 'default');
   const status = asText(input.status) || 'Status not supplied.';
   const evidence = asList(input.evidence);
   const risks = asList(input.risks);
@@ -9,6 +12,7 @@ function buildBriefModel(input) {
 
   return {
     title,
+    theme,
     status,
     evidence: evidence.length ? evidence : ['No evidence supplied.'],
     risks: risks.length ? risks : ['No risks supplied.'],
@@ -20,6 +24,16 @@ function buildBriefModel(input) {
       sourcePath: input.sourcePath || ''
     }
   };
+}
+
+function normalizeTheme(value) {
+  const theme = asText(value).toLowerCase() || 'default';
+
+  if (!THEME_SLUGS.includes(theme)) {
+    throw new Error(`Unknown theme "${asText(value)}". Available themes: ${THEME_SLUGS.join(', ')}.`);
+  }
+
+  return theme;
 }
 
 function asText(value) {
@@ -76,8 +90,10 @@ function normalizeGeneratedAt(value) {
 }
 
 module.exports = {
+  THEME_SLUGS,
   buildBriefModel,
   asList,
   asText,
+  normalizeTheme,
   normalizeGeneratedAt
 };

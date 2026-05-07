@@ -5,6 +5,7 @@ const { renderHtml, escapeHtml } = require('../src/renderHtml');
 test('renderHtml includes required brief sections', () => {
   const html = renderHtml({
     title: 'Demo <Brief>',
+    theme: 'warm',
     status: 'Ready',
     evidence: ['JSON works'],
     risks: ['None known'],
@@ -21,6 +22,8 @@ test('renderHtml includes required brief sections', () => {
   assert.match(html, /Actions/);
   assert.match(html, /Next Milestone/);
   assert.match(html, /Demo &lt;Brief&gt;/);
+  assert.match(html, /data-theme="warm"/);
+  assert.match(html, /--accent: #c2410c;/);
 });
 
 test('escapeHtml escapes unsafe characters', () => {

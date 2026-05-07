@@ -1,28 +1,20 @@
-function renderHtml(model) {
-  const title = escapeHtml(model.title);
-  const themeName = model.theme || 'default';
-  const theme = getThemeTokens(themeName);
-  const evidenceItems = model.evidence.map(renderListItem).join('');
-  const riskItems = model.risks.map(renderListItem).join('');
-  const actionItems = model.actions.map(renderListItem).join('');
-
-  return `<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${title}</title>
+  <title>Theme Demo</title>
   <style>
     :root {
       color-scheme: light;
-      --ink: ${theme.ink};
-      --muted: ${theme.muted};
-      --line: ${theme.line};
-      --paper: ${theme.paper};
-      --panel: ${theme.panel};
-      --accent: ${theme.accent};
-      --accent-strong: ${theme.accentStrong};
-      --warning: ${theme.warning};
+      --ink: #2f241f;
+      --muted: #7b6256;
+      --line: #e7d8cb;
+      --paper: #fff7f0;
+      --panel: #fffdf9;
+      --accent: #c2410c;
+      --accent-strong: #9a3412;
+      --warning: #b45309;
       --shadow: 0 18px 50px rgba(23, 32, 38, 0.12);
     }
     * { box-sizing: border-box; }
@@ -141,122 +133,42 @@ function renderHtml(model) {
   </style>
 </head>
 <body>
-  <main class="page" data-theme="${escapeHtml(themeName)}">
+  <main class="page" data-theme="warm">
     <header>
       <p class="eyebrow">Operator Sprint Brief</p>
-      <h1>${title}</h1>
+      <h1>Theme Demo</h1>
       <div class="meta">
-        <span class="pill">Generated ${escapeHtml(formatDate(model.meta.generatedAt))}</span>
-        <span class="pill">Source ${escapeHtml(model.meta.sourceType)}</span>
+        <span class="pill">Generated 2026-05-07 01:24:40 UTC</span>
+        <span class="pill">Source json</span>
       </div>
     </header>
     <div class="layout">
       <div class="stack">
         <section class="status" aria-labelledby="status-heading">
           <h2 id="status-heading">Status</h2>
-          <p>${escapeHtml(model.status).replace(/\n/g, '<br>')}</p>
+          <p>Ready</p>
         </section>
         <section aria-labelledby="evidence-heading">
           <h2 id="evidence-heading">Evidence</h2>
-          <ul>${evidenceItems}</ul>
+          <ul><li>theme wired</li></ul>
         </section>
         <section class="risks" aria-labelledby="risks-heading">
           <h2 id="risks-heading">Risks</h2>
-          <ul>${riskItems}</ul>
+          <ul><li>none</li></ul>
         </section>
         <section class="actions" aria-labelledby="actions-heading">
           <h2 id="actions-heading">Actions</h2>
-          <ul>${actionItems}</ul>
+          <ul><li>review</li></ul>
         </section>
       </div>
       <section class="milestone" aria-labelledby="milestone-heading">
         <div>
           <h2 id="milestone-heading">Next Milestone</h2>
-          <strong>${escapeHtml(model.nextMilestone).replace(/\n/g, '<br>')}</strong>
+          <strong>Ship</strong>
         </div>
         <p class="footer-note">Single-file local artifact. No network service required.</p>
       </section>
     </div>
   </main>
 </body>
-</html>`;
-}
-
-function renderListItem(item) {
-  return `<li>${escapeHtml(item)}</li>`;
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-function formatDate(isoDate) {
-  const date = new Date(isoDate);
-  if (Number.isNaN(date.getTime())) {
-    return isoDate;
-  }
-  return date.toISOString().replace('T', ' ').replace(/\.\d{3}Z$/, ' UTC');
-}
-
-function getThemeTokens(theme) {
-  if (theme === 'slate') {
-    return {
-      ink: '#e5eef5',
-      muted: '#94a3b8',
-      line: '#334155',
-      paper: '#0f172a',
-      panel: '#111c34',
-      accent: '#38bdf8',
-      accentStrong: '#7dd3fc',
-      warning: '#f59e0b'
-    };
-  }
-
-  if (theme === 'warm') {
-    return {
-      ink: '#2f241f',
-      muted: '#7b6256',
-      line: '#e7d8cb',
-      paper: '#fff7f0',
-      panel: '#fffdf9',
-      accent: '#c2410c',
-      accentStrong: '#9a3412',
-      warning: '#b45309'
-    };
-  }
-
-  if (theme === 'high-contrast') {
-    return {
-      ink: '#101010',
-      muted: '#2f2f2f',
-      line: '#101010',
-      paper: '#ffffff',
-      panel: '#ffffff',
-      accent: '#0047ff',
-      accentStrong: '#002ea6',
-      warning: '#b00020'
-    };
-  }
-
-  return {
-    ink: '#172026',
-    muted: '#59646d',
-    line: '#d7dde1',
-    paper: '#fbfaf7',
-    panel: '#ffffff',
-    accent: '#0f766e',
-    accentStrong: '#0b514c',
-    warning: '#9a3412'
-  };
-}
-
-module.exports = {
-  renderHtml,
-  escapeHtml,
-  getThemeTokens
-};
+</html>
