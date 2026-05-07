@@ -37,3 +37,14 @@ test('buildBriefModel normalizes provided generated timestamp', () => {
 
   assert.equal(model.meta.generatedAt, '2026-05-06T05:28:15.000Z');
 });
+
+test('buildBriefModel derives readiness from evidence, risks, and actions', () => {
+  const model = buildBriefModel({
+    evidence: ['Integration test passed'],
+    risks: ['API key missing in staging'],
+    actions: ['Assign owner for environment fix']
+  });
+
+  assert.equal(model.readiness.state, 'Needs Decision');
+  assert.equal(model.readiness.source, 'derived');
+});
